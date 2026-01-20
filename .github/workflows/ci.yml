@@ -44,13 +44,9 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
-      # 5. SCA - Dependency Vulnerability Scan
-      - name: Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          project: "live-class-app"
-          path: "."
-          format: "HTML"
+      # 5. SCA - Dependency Vulnerability Scan (using Maven plugin)
+      - name: OWASP Dependency Check
+        run: mvn org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=7
 
       # 6. Unit Tests
       - name: Run unit tests
