@@ -26,6 +26,7 @@ jobs:
       - name: Run Checkstyle
         run: mvn validate
 
+
       # 4. SAST - CodeQL Analysis
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
