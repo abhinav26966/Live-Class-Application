@@ -46,7 +46,10 @@ jobs:
 
       # 5. SCA - Dependency Vulnerability Scan (using Maven plugin)
       - name: OWASP Dependency Check
-        run: mvn org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=7
+        run: |
+          mvn org.owasp:dependency-check-maven:check \
+            -DfailBuildOnCVSS=7 \
+            -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
       # 6. Unit Tests
       - name: Run unit tests
